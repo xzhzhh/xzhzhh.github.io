@@ -1,19 +1,604 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html>
 <head>
-  <title>Bootstrap5 实例</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>1 、请简述表单构成中的表单控件、提示信息和表单域是什么 (含解释) 。</title>
 </head>
-<body>
-
-<div class="container mt-3">
-  <p>chenjiahuang</p>
-
-  
-</div>
-
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h6 id='1-请简述表单构成中的表单控件提示信息和表单域是什么-含解释-'><span>1 、请简述表单构成中的表单控件、提示信息和表单域是什么 (含解释) 。</span></h6><p><span>表单控件：包含了具体的表单功能项&quot;,&quot;如单行文本输入框、密码输入框、复选框、提交按钮、重置按钮等。</span></p><p><span> </span></p><p><span>提示信息：一个表单中通常还需要包含一些说明性的文字&quot;,&quot;提示用户进行填写和操作。</span></p><p><span> </span></p><p><span>表单域：它相当于一个容器&quot;,“用来容纳所有的表单控件和提示信息”,“可以通过他定义处理表单数据所用程序的url地址”,“以及数据提交到服务器的方法。如果不定义表单域”,&quot;表单中的数据就无法传送到后台服务器。</span></p><h6 id='2-请简述数据库连接池的工作机制是什么'><span>2 、请简述数据库连接池的工作机制是什么?</span></h6><p><span>数据库连接池在初始化时将创建一定数量的数据库连接放到连接池中，当应用程序访问数据库时并不是直接创建Connection，而是向连接池“申请”一个Connection。如果连接池中有空闲的Connection，则将其返回，否则创建新的Connection。使用完毕后，连接池会将该Connection回收，并交付其他的线程使用，以减少创建和断开数据库连接的次数，提高数据库的访问效率</span></p><p><span> </span></p><h6 id='3-请简述-el-中的运算符有哪些'><span>3 、请简述 EL 中的运算符有哪些。</span></h6><p><span>1.点运算符(.)</span></p><p><span>2.方括号运算符([])</span></p><p><span>3.算术运算符</span></p><p><span>4.比较运算符</span></p><p><span>5.逻辑运算符</span></p><p><span>6.empty运算符</span></p><p><span>7.条件运算符</span></p><p><span>8.“()”运算符</span></p><p>&nbsp;</p><h6 id='4-简述-servlet-事件监听器的作用写出三点'><span>4 、简述 Servlet 事件监听器的作用。(写出三点)</span></h6><p><span>1.监听Web应用程序中ServletContext、HttpSession和ServletRequest等域对象的创建和销毁过程。</span></p><p><span> </span></p><p><span>2.监听ServletContext、HttpSession和ServletRequest等域对象属性的修改。</span></p><p><span> </span></p><p><span>3.感知绑定到HttpSession域中某个对象的状态。</span></p><h6 id='5-请简述-cookie-与-session-的区别至少写出-3-点'><span>5 、请简述 Cookie 与 Session 的区别。(至少写出 3 点)</span></h6><p><span>1.Cookie和HttpSession是保存会话相关数据的技术，其中Cookie将信息存储在浏览器端是客户端技术，Session将数据保存在服务器端是服务器端技术</span></p><p><span> </span></p><p><span>2.Cookie是基于HTTP协议中的Set-Cookie响应头和Cookie请求头进行工作的</span></p><p><span> </span></p><p><span>3.默认情况下HttpSession是基于一个名称为JSESSIONID 的特殊Cookie工作的</span></p><p><span> </span></p><p><span>4.浏览器对Cookie具有严格的限制，一个网站能在浏览器中保存多少Cookie是有限制的</span></p><p><span> </span></p><p><span>5.HttpSession默认是基于Cookie运作的</span></p><p><span> </span></p><h6 id='6-请简述-el-中的标识符在定义时应该遵守哪些规范'><span>6 、请简述 EL 中的标识符在定义时应该遵守哪些规范。</span></h6><p><span>1.可以由任意顺序的大小写字母、数字和下划线组成</span></p><p><span> </span></p><p><span>2.不能以数字开头</span></p><p><span> </span></p><p><span>3.不能是EL中的保留字，如and、or、gt；</span></p><p><span> </span></p><p><span>4.不能是EL隐式对象，如pageContext；</span></p><p><span> </span></p><p><span>5.不能包含单引号（’）、双引号（&quot;）、减号（-）和正斜线等特殊字符</span></p><p><span> </span></p><h6 id='7-请简述-pagecontext-对象的作用--至少写出-2'><span>7 、请简述 pageContext 对象的作用？  (至少写出 2)</span></h6><p><span>pageContext 对象的作用是取得任何范围的参数，通过它可以获取 JSP页面的out、request、reponse、session、application 等对象。</span></p><p><span>在指定范围内设置属性和属性值。</span></p><p><span>在指定范围内删除某属性</span></p><p><span>在指定范围内获取属性值。</span></p><p><span> </span></p><h6 id='8请简述文件上传时必须具备的三个前提条件'><span>8、请简述文件上传时必须具备的三个前提条件。 </span></h6><p><span>首先要创建一个用于提交上传文件的表单页面。</span></p><p><span>2）在页面中，需要使用标签在Web页面中添加文件上传输入框type设置为file。</span></p><p><span>3）必须要设置input输入项的name属性，否则浏览器将不会发送上传文件的数据。</span></p><p><span>4）必须把将表单页面的method属性设置为post方式，enctype属性设置为“multipart/form-data”类型。</span></p><h6 id='9请简述什么是数据库连接池并对其优点进行说明'><span>9、请简述什么是数据库连接池，并对其优点进行说明。</span></h6><p><span>数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用现有的</span></p><p><span>数据库连接，而不是重新建立。</span></p><p><span>数据库连接池的优点包括：</span></p><p><span>（1）允许应用程序重复使用现有的数据库连接，而不是重新建立。</span></p><p><span>（2）当连接完毕后，连接池会将该连接回收，并交付其他的线程使用。</span></p><p><span>（3）减少创建和断开数据库连接的次数，提高数据库的访问效率。</span></p><p><span> </span></p><h6 id='10请简述简述-post-请求和-get-请求有什么不同'><span> 10、请简述简述 POST 请求和 GET 请求有什么不同。</span></h6><p><span>POST传输数据大小无限制</span></p><p><span>POST比GET请求方式更安全</span></p><p><span> </span></p><h6 id='11请简述文件下载的实现原理'><span> 11、请简述文件下载的实现原理。 </span></h6><p><span>需要通过HttpServletResponse.setContentType方法设置Content-Type头字段的值,例如, &quot;application/x-msdownload&quot;等.</span></p><p><span>需要通过HttpServletResponse.setHeader方法设置Content-Disposition头的值为&quot;attachment;filename=文件名&quot;.</span></p><p><span>读取下载文件,调用HttpServletResponse.getOutputStream方法返回的ServletOutputStream对象来向客户端写入附件文件内容.</span></p><p><strong><span>首先获取下载文件的地址，并根据该地址创建文件字节输入流，然后通过该流读取下载文件内容，最后将读取的内容通过输出流写到目标文件中。</span></strong></p><p><span> </span></p><h6 id='12请简述-servlet-事件监听器的分类写出三点）'><span>12、请简述 Servlet 事件监听器的分类。（写出三点） </span></h6><p><span>监听器 Listener 按照监听的事件划分，可以分为 3 类：</span></p><ol><li><span>监听对象创建和销毁的监听器</span></li><li><span>监听对象中属性变更的监听器</span></li><li><span>监听 HttpSession 中的对象状态改变的监听器</span></li></ol><h6 id='13请简述什么是会话过程以及会话过程中产生的数据如何保存'><span>13、请简述什么是会话过程以及会话过程中产生的数据如何保存。 </span></h6><p><strong><span>会话过程类似于生活中的打电话过程</span></strong><span>，它指的是一个客户端（浏览器）与Web服务器之间连续发生的一系列请求和响应过程。</span></p><p><span>在</span><a href='https://so.csdn.net/so/search?q=Servlet&amp;spm=1001.2101.3001.7020'><span>Servlet</span></a><span>技术中，提供了两个用于保存会话数据的对象，分别是Cookie和Session</span></p><p><span>其中Cookie将信息存储在浏览器端，是客户端技术，</span><a href='https://so.csdn.net/so/search?q=Session&amp;spm=1001.2101.3001.7020'><span>Session</span></a><span>将数据保存在服务器端，是服务器端技术</span></p><p><span>//////14、请简述 pageContext 对象的作用？（至少写出 2 点）</span></p><h6 id='15请简述-javabean-的特点'><span> 15、请简述 JavaBean 的特点。</span></h6><p><span>JavaBean 必须具有一个无参的构造函数。</span></p><p><span>属性必须私有化。</span></p><p><span>私有化的属性必须通过public类型的方法暴露给其他程序，并且方法的命名也必须遵守一定的命名规范。</span></p><h6 id='16简述-javabean-规范都有哪些至少写出-2-点）'><span>16、简述 Javabean 规范都有哪些?（至少写出 2 点）</span></h6><p><span>（1）它必须具有一个公共的、无参的构造方法，这个方法可以是编译器自动产生的缺省构造方法。</span></p><p><span>（2）它提供公共的setter方法和getter方法让外部程序设置和获取JavaBean的属性。</span></p><p><span>（3）它是一个公有类。</span></p><p><span>（4）通常可以实现java.io.Serializable用于序列化。</span></p><p><span> </span></p><p><span> </span></p><h6 id='1请简述-filter-生命周期的各个阶段'><span>1、请简述 Filter 生命周期的各个阶段。</span></h6><p><span>\1.   Filter的生命周期可分为创建、执行、销毁三个阶段。</span></p><p><span>（1）创建阶段：Web服务器启动的时候会创建Filter实例对象，并调用init()方法，完成对象的初始化。</span></p><p><span>（2）执行阶段：当客户端请求目标资源时，服务器会筛选出符合映射条件的Filter，并按照类名的的先后顺序依次执行doFilter() 方法。</span></p><p><span>（3）销毁阶段：服务器关闭时，Web服务器调用destroy()方法销毁Filter对象。</span></p><h6 id='2请简述什么是数据库连接池以及其优点-重复）'><span> 2、请简述什么是数据库连接池以及其优点。 （重复）</span></h6><h6 id='3请简述数据库连接池的工作机制是什么'><span>3、请简述数据库连接池的工作机制是什么?</span></h6><p><span>数据库连接池在初始化时将创建一定数量的数据库连接放到连接池中，当应用程序访问数据库时并不是直接创建Connection，而是向连接池“申请”一个Connection。如果连接池中有空闲的Connection，则将其返回，否则创建新的Connection。使用完毕后，连接池会将该Connection回收，并交付其他的线程使用，以减少创建和断开数据库连接的次数，提高数据库的访问效率。</span>
+</p><h6 id='4请简述运算符和运算符的区别与联系'><span> 4、请简述.运算符和[]运算符的区别与联系。</span></h6><p>&nbsp;</p><p><span>区别：</span></p><p><span>EL中的点运算符用于访问JSP页面中某些对象的属性.</span>
+<span>EL中的中括号运算符与点运算符的功能相同，都用于访问JSP页面中某些对象的属性。当获取的属性名中包含一些特殊符号，就只能使用中括号运算符访问该属性。</span></p><p><span>联系：</span></p><p><span>这两种运算符的功能相同。</span></p><p><span>点运算符和中括号运算符在某种情况下可以互换。</span></p><p><span>中括号运算符还可以访问List集合或数组中指定索引的某个元素。</span>
+<span>中括号运算符和点运算符可以相互结合使用。</span></p><h6 id='5请简述-dbutils-工具的三个作用'><span> 5、请简述 DBUtils 工具的三个作用。</span></h6><p><span>写数据。DBUtils 可以通过编写SQL语句对数据表进行增、删、改操作。 </span>
+<span>读数据。DBUtils工具可以将从数据表中读取的数据结果集转换成Java常用类集合，以方便对结果进行处理。 </span></p><p><span>优化性能。在使用DBUtils工具的基础上，程序可以使用数据源、JNDI、数据库连接池等技术减少代码冗余。</span></p><h6 id='6简述-commons-fileupload-组件实现文件上传的优点至少写-3-点）'><span> 6、简述 Commons-FileUpload 组件实现文件上传的优点。（至少写 3 点）</span></h6><ul><li><span>使用简单，只需要编写少量的代码就可以完成文件的上传功能。</span></li><li><span>能够全程控制上传内容，使用 Commons-FileUpload 组件提供的对象及操作方法，可以获得上传文件的信息。</span></li><li><span>能够控制上传文件的大小和类型。</span></li></ul><h6 id='7请简述-listener-监听过程中涉及的重要组成部分有哪些'><span> 7、请简述 Listener 监听过程中涉及的重要组成部分有哪些？</span></h6><p><span>(1)事件：用户的一个操作。</span>
+<span>(2)事件源：产生事件的对象。</span>
+<span>(3)事件监听器：负责监听发生在事件源上的事件。</span>
+<span>(4)事件处理器：监听器的成员方法，当事件发生的时候会触发对应的处理器。</span></p><h6 id='8请简述什么是-jsp-模板元素以及它的作用'><span> 8、请简述什么是 JSP 模板元素以及它的作用？</span></h6><p><span>jsp页面中静态的html内容称之为模板元素。在静态的html内容中可以嵌套JSP的其他各种元素来产生动态内容和执行业务逻辑。</span></p><p><span>作用：</span></p><p><span>jsp模板元素定义了网页的基本框架，即定义了页面的结构和外观</span></p><p><span>（模板元素是指JSP源文件中属于静态的HTML或者XML的部分,它们是JSP文件最终用来响应客户端请求的HTML页面的主体,因而它们对于JSP的显示是非常重要的.）</span></p><h6 id='9请简述定义-el-标识符的规范重复）'><span> 9、请简述定义 EL 标识符的规范。（重复）</span></h6><p><span>1.可以由任意顺序的大小写字母、数字和下划线组成</span></p><p><span> </span></p><p><span>2.不能以数字开头</span></p><p><span> </span></p><p><span>3.不能是EL中的保留字，如and、or、gt；</span></p><p><span> </span></p><p><span>4.不能是EL隐式对象，如pageContext；</span></p><p><span> </span></p><p><span>5.不能包含单引号（’）、双引号（&quot;）、减号（-）和正斜线等特殊字符</span></p><h6 id='10请简述-jdbc-编程的-6-个开发步骤'><span> 10、请简述 JDBC 编程的 6 个开发步骤。</span></h6><p><span>（1）加载并注册数据库驱动。</span></p><p><span>（2）通过DriverManager获取数据库连接。</span></p><p><span>（3）通过Connection对象获取Statement对象。</span></p><p><span>（4）使用Statement对象执行SQL语句。</span></p><p><span>（5）操作ResultSet结果集。</span></p><p><span>（6）关闭连接，释放资源。</span></p><h6 id='11使用-taglib-指令导入-core-标签库具体代码如下--taglib-urihttpjavasuncomjspjstlcore-prefixc请简述您对上述-taglib-指令中-uri-和-prefix-属性的理解'><span> 11、使用 taglib 指令导入 Core 标签库，具体代码如下： &lt;%@ taglib uri=&quot;</span><a href='http://java.sun.com/jsp/jstl/core' target='_blank' class='url'>http://java.sun.com/jsp/jstl/core</a><span>&quot; prefix=&quot;c&quot;%&gt;请简述您对上述 taglib 指令中 uri 和 prefix 属性的理解。 </span></h6><p><span>	</span><span>在上述代码中，taglib指令的uri属性用于指定引入标签库描述符文件的URI, prefix属性用于指定引入标签库描述符文件的前缀，在JSP文件中使用这个标签库中的某个标签时都需要使用这个前缀。</span></p><h6 id='12请简述什么是内置对象以及内置对象的作用'><span>12、请简述什么是内置对象，以及内置对象的作用？</span></h6><p><span>在jsp 中，内置对象就是JSP隐式对象，它是JSP容器为每个页面提供的Java对象。</span><strong><span>JSP内置对象共有9个</span></strong><span>，开发者可以直接使用它们而不用显式声明。</span></p><p><span>作用：</span></p><p><span>1、request对象：客户端的请求信息被封装到request对象中，通过request可以了解到客户的需求，然后做出响应。</span></p><p><span>2、response对象：response对象包含了响应客户请求的有关信息，但在JSP中很少直接用到它。</span></p><p><span>3、session对象：session对象指的是客户端与服务端的一次会话，从客户端到服务端的一个WebApplication开始，直到客户端与服务端断开连接为止。</span></p><p><span>4、out对象：out对象是JspWriter类的实例，是向客户端输出内容常用的对象。</span></p><p><span>5、page对象：page对象就是指向当前JSP页面本身。</span></p><p><span>6、application对象：application对象实现了用户间数据的共享，可存放全局变量。它开始服务器的启动，直到服务器的关闭，在此期间，此对象将一直存在。这样在用户的前后连接或不同用户之间的连接中，可以对此对象的同一属性进行操作；在任何地方对此对象属性的操作，都将影响到其他用户对此的方法。服务器的启动和关闭决定了application对象的生命。</span></p><p><span>7、exception对象：exception对象是一个例外对象，当一个页面在运行过程中发生了例外，就产生这个对象。如果一个JSP页面要应用此对象，必须把isErrorPage设为true，否则无法编译。</span></p><p><span>8、pageContext对象：pageContext对象提供了对JSP页面所有对象及名字空间的方法，也就是，它可以访问到本页的所有session，也可以取本页面所在application的某一属性值，它相当于页面中所有功能的集大成者，它的本类名也叫pageContext。</span></p><p><span>9、config对象：config对象是一个在Servlet初始化时，JSP引擎向它传递信息用的，此信息包括Servlet初始化时所要用到的参数（通过属性名和属性值构成）以及服务器的有关信息（通过传递一个ServletContext对象）。</span></p><h6 id='13请简述什么是-javascript-以及-javascript-的作用'><span> 13、请简述什么是 JavaScript 以及 JavaScript 的作用。</span></h6><p><span>JavaScript 语言是采用事件驱动的。</span></p><p><span>在JavaScript 中，对象是一种数据类型，是由属性和方法组成的集合。</span></p><p><span>JavaScript 是脚本语言，也是一种轻量级的编程语言。</span></p><p><span>JavaScript 是可插入 HTML 页面的编程代码，插入 HTML 页面后，可由所有的现代浏览器执行。</span></p><p><span>作用：</span></p><p><span>JavaScript能够开发与用户双向互动的功能。</span></p><p><span>作为表单栏位的验证,检查表单栏位是否输入错误。</span></p><p><span>直接使用浏览器对象,建立复杂的网页内容,例如:打开新窗口载入网页。</span></p><h6 id='14el-中提供了-4-个用于访问作用域范围的隐式对象请对其进行简要说明'><span> 14、EL 中提供了 4 个用于访问作用域范围的隐式对象，请对其进行简要说明</span></h6><p><span>在EL中提供了4个用于访问作用域范围的隐含对象，即pageScope、requestScope、sessionScope和applicationScope。</span></p><p><span>——————隐含对象用来返回包含————范围内的属性的集合，返回值为java.util.Map对象。（样式模板）</span></p><p><span>pageScope隐含对象：</span></p><p><span>该对象用于返回包含page（页面）范围内的属性值的集合，返回值为java.util.Map对象。</span></p><p><span>requestScope隐含对象：</span></p><p><span>requestScope隐含对象用于返回包含request请求范围内的属性值的集合，返回值为java.util.Map对象。</span></p><p><span>sessionScope隐含对象：</span></p><p><span>sessionScope隐含对象用来返回包含session会话范围内的属性的集合，返回值为java.util.Map对象。</span></p><p><span>pplicationScope隐含对象：</span></p><p><span>applicationScope隐含对象用于返回包含application应用范围内的属性值的集合，返回值为java.util.Map对象。</span></p><h6 id='15请简述-servletcontext-接口的三个主要作用'><span> 15、请简述 ServletContext 接口的三个主要作用。 </span></h6><ul><li><span> 获取web应用的初始化参数 （在web.xml文件中，可以配置Servlet的初始化信息，还可以配置整个Web应用的初始化信息。）</span></li><li><span>实现多个servlet的数据共享（因为一个Web应用中的所有Servlet共享同一个ServletContext对象，所以ServletContext对象的域属性可</span>
+<span>以被该Web应用中的所有Servlet访问。）</span></li><li><span>获取web应用下的资源文件</span></li></ul><h6 id='16列举出-servlet-事件监听器可以监听的对象至少写出三个）'><span>16、列举出 Servlet 事件监听器可以监听的对象？(至少写出三个）</span></h6><p><strong><span>ServletContext、</span></strong></p><p><strong><span>HttpSession</span></strong></p><p><span>ServletRequest</span></p><p><span> </span></p></div></div>
 </body>
 </html>
